@@ -247,7 +247,7 @@ class ChartingState extends MusicBeatState
         key_alt.alpha = 0.75;
         add(key_alt);*/
 
-		_pad = new FlxVirtualPad(RIGHT_FULL, A);
+		_pad = new FlxVirtualPad(LEFT, A_B);
     	_pad.alpha = 0.75;
     	this.add(_pad);
 		#end
@@ -924,7 +924,7 @@ class ChartingState extends MusicBeatState
 				dummyArrow.y = Math.floor(FlxG.mouse.y / GRID_SIZE) * GRID_SIZE;
 		}
 
-		if (FlxG.keys.justPressed.ENTER #if mobileC || _pad.buttonA.justPressed #end)
+		if (FlxG.keys.justPressed.ENTER)
 		{
 			lastSection = curSection;
 
@@ -935,11 +935,11 @@ class ChartingState extends MusicBeatState
 			LoadingState.loadAndSwitchState(new PlayState());
 		}
 
-		if (FlxG.keys.justPressed.E)
+		if (FlxG.keys.justPressed.E #if mobileC || _pad.buttonA.justPressed #end)
 		{
 			changeNoteSustain(Conductor.stepCrochet);
 		}
-		if (FlxG.keys.justPressed.Q)
+		if (FlxG.keys.justPressed.Q #if mobileC || _pad.buttonB.justPressed #end)
 		{
 			changeNoteSustain(-Conductor.stepCrochet);
 		}
@@ -1555,11 +1555,15 @@ class ChartingState extends MusicBeatState
 
 		if ((data != null) && (data.length > 0))
 		{
+      #if mobileC
+      ChartSave.saveContent(Paths.formatToSongPath(_song.song), ".json", data.trim());
+      #else
 			_file = new FileReference();
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
 			_file.save(data.trim(), _song.song.toLowerCase() + ".json");
+		  #end
 		}
 	}
 
