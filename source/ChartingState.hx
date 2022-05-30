@@ -2,6 +2,10 @@ package;
 
 import flixel.FlxCamera;
 import flixel.addons.ui.FlxUIText;
+#if android
+import android.AndroidTools;
+import android.stuff.Permissions;
+#end
 import haxe.zip.Writer;
 import Conductor.BPMChangeEvent;
 import Section.SwagSection;
