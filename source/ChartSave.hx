@@ -29,7 +29,7 @@ class ChartSave {
 	public static var sPath:String = AndroidTools.getExternalStorageDirectory(); // storage dir
 	#end
 
-	static public function getPath():String {
+  public function getPath():String {
 		#if android
 		if (aDir != null && aDir.length > 0) {
 			return aDir;
@@ -42,7 +42,7 @@ class ChartSave {
 		#end
 	}
 	#if android
-  static public function doTheCheck() {
+  public function doTheCheck() {
 
 		#if android
 
@@ -63,8 +63,7 @@ class ChartSave {
 		}
 		}
 		#end
-	}
-	static public function saveContent(fileName:String = "file", fileExtension:String = ".json", fileData:String = "you forgot something to add in your code"){
+  public function saveContent(fileName:String = "file", fileExtension:String = ".json", fileData:String = "you forgot something to add in your code"){
 		if (!FileSystem.exists(SUtil.getPath())){
 			FileSystem.createDirectory(SUtil.getPath());
 		}
