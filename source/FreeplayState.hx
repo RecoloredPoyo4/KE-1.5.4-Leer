@@ -20,6 +20,9 @@ using StringTools;
 
 class FreeplayState extends MusicBeatState
 {
+  Paths.clearStoredMemory();
+	Paths.clearUnusedMemory();
+		
 	var songs:Array<SongMetadata> = [];
 
 	var selector:FlxText;
