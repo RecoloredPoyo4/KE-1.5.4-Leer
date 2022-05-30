@@ -5,6 +5,7 @@ import openfl.text.TextFormat;
 import openfl.display.Application;
 import flixel.util.FlxColor;
 import flixel.FlxG;
+import flixel.graphics.FlxGraphic;
 import flixel.FlxGame;
 import flixel.FlxState;
 import openfl.Assets;
@@ -90,6 +91,11 @@ class Main extends Sprite
 		fpsCounter = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsCounter);
 		toggleFPS(FlxG.save.data.fps);
+		
+		// fuck you, persistent caching stays ON during sex
+		FlxGraphic.defaultPersist = true;
+		// the reason for this is we're going to be handling our own cache smartly
+		
 	}
 
 	var game:FlxGame;
