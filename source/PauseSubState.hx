@@ -104,6 +104,10 @@ class PauseSubState extends MusicBeatSubstate
 		//#end
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+	
+	  #if mobileC
+		addVirtualPad(RIGHT_FULL, A);
+		#end
 	}
 
 	override function update(elapsed:Float)
