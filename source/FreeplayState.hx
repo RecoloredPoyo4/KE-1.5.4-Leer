@@ -20,8 +20,6 @@ using StringTools;
 
 class FreeplayState extends MusicBeatState
 {
-  Paths.clearStoredMemory();
-	Paths.clearUnusedMemory();
 		
 	var songs:Array<SongMetadata> = [];
 
@@ -43,6 +41,9 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
+	  Paths.clearStoredMemory();
+	  Paths.clearUnusedMemory();
+	
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
 
 		for (i in 0...initSonglist.length)
