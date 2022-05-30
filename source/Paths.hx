@@ -59,14 +59,6 @@ class Paths
 			}
 		}
 
-		// clear all sounds that are cached
-		for (key in currentTrackedSounds.keys()) {
-			if (!localTrackedAssets.contains(key) 
-			&& !dumpExclusions.contains(key) && key != null) {
-				Assets.cache.clear(key);
-				currentTrackedSounds.remove(key);
-			}
-		}	
 		// flags everything to be cleared out next unused memory clear
 		localTrackedAssets = [];
 		openfl.Assets.cache.clear("songs");
