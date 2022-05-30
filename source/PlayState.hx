@@ -1,5 +1,6 @@
 package;
 
+import flixel.graphics.FlxGraphic;
 import openfl.ui.KeyLocation;
 import openfl.events.Event;
 import haxe.EnumTools;
@@ -241,6 +242,8 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+	  Paths.clearStoredMemory();
+
 		instance = this;
 		
 		if (FlxG.save.data.fpsCap > 290)
@@ -1173,6 +1176,7 @@ class PlayState extends MusicBeatState
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN,handleInput);
 
 		super.create();
+		Paths.clearUnusedMemory();
 	}
 
 	function schoolIntro(?dialogueBox:DialogueBox):Void
