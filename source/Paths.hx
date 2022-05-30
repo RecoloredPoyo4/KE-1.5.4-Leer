@@ -8,6 +8,7 @@ import haxe.xml.Access;
 import openfl.system.System;
 import flixel.FlxG;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.graphics.FlxGraphic;
 import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
 
