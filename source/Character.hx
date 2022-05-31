@@ -302,7 +302,7 @@ class Character extends FlxSprite
 				flipX = true;
 				
 				case 'bf-dead':
-				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared');
+				var tex = Paths.getSparrowAtlas('characters/DeadBF', 'shared');
 				frames = tex;
 				
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
