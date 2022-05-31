@@ -1549,6 +1549,10 @@ class ChartingState extends MusicBeatState
 		};
 
 		var data:String = Json.stringify(json);
+		
+		#if mobileC 
+		openfl.system.System.setClipboard(data.trim());
+    #end
 
 		if ((data != null) && (data.length > 0))
 		{
