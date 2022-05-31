@@ -91,9 +91,7 @@ class Main extends Sprite
 		//FPS & Memory Usage
 		fpsCounter = new CoolerFPS(10, 3, 0xFFFFFF);
     addChild(fpsCounter);
-    if(fpsCounter != null) {
-    fpsCounter.visible = FlxG.save.data.fps;
-    }
+    toggleFPS(FlxG.save.data.fps)
 		
 		// fuck you, persistent caching stays ON during sex
 		FlxGraphic.defaultPersist = true;
@@ -107,10 +105,6 @@ class Main extends Sprite
 
 	public function toggleFPS(fpsEnabled:Bool):Void {
 		fpsCounter.visible = fpsEnabled;
-	}
-	
-	public function toggleMem(memEnabled:Bool):Void {
-		memoryCounter.visible = memEnabled;
 	}
 
 	public function changeFPSColor(color:FlxColor)
