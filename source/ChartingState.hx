@@ -928,13 +928,13 @@ class ChartingState extends MusicBeatState
 		}
   	#else
   	for (touch in FlxG.touches.list){
-    if (FlxG.touch.justReleased)
+    if (touch.justReleased)
 		{
-			if (FlxG.touch.overlaps(curRenderedNotes))
+			if (touch.overlaps(curRenderedNotes))
 			{
 				curRenderedNotes.forEach(function(note:Note)
 				{
-					if (FlxG.touch.overlaps(note))
+					if (touch.overlaps(note))
 					{
 						if (FlxG.keys.pressed.CONTROL)
 						{
@@ -949,10 +949,10 @@ class ChartingState extends MusicBeatState
 			}
 			else
 			{
-				if (FlxG.touch.x > gridBG.x
-					&& FlxG.touch.x < gridBG.x + gridBG.width
-					&& FlxG.touch.y > gridBG.y
-					&& FlxG.touch.y < gridBG.y + (GRID_SIZE * _song.notes[curSection].lengthInSteps))
+				if (touch.x > gridBG.x
+					&& touch.x < gridBG.x + gridBG.width
+					&& touch.y > gridBG.y
+					&& touch.y < gridBG.y + (GRID_SIZE * _song.notes[curSection].lengthInSteps))
 				{
 					FlxG.log.add('added note');
 					addNote();
@@ -961,16 +961,16 @@ class ChartingState extends MusicBeatState
 		}
 		
 
-		if (FlxG.touch.x > gridBG.x
-			&& FlxG.touch.x < gridBG.x + gridBG.width
-			&& FlxG.touch.y > gridBG.y
-			&& FlxG.touch.y < gridBG.y + (GRID_SIZE * _song.notes[curSection].lengthInSteps))
+		if (touch.x > gridBG.x
+			&& touch.x < gridBG.x + gridBG.width
+			&& touch.y > gridBG.y
+			&& touch.y < gridBG.y + (GRID_SIZE * _song.notes[curSection].lengthInSteps))
 		{
-			dummyArrow.x = Math.floor(FlxG.touch.x / GRID_SIZE) * GRID_SIZE;
+			dummyArrow.x = Math.floor(touch.x / GRID_SIZE) * GRID_SIZE;
 			if (FlxG.keys.pressed.SHIFT #if mobileC || key_shift.pressed #end)
-				dummyArrow.y = FlxG.touch.y;
+				dummyArrow.y = touch.y;
 			else
-				dummyArrow.y = Math.floor(FlxG.touch.y / GRID_SIZE) * GRID_SIZE;
+				dummyArrow.y = Math.floor(touch.y / GRID_SIZE) * GRID_SIZE;
 		}
 }
     #end
