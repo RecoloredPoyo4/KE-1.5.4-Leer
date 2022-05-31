@@ -27,6 +27,7 @@ class Main extends Sprite
 	#end
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
+  var memoryCounter:MemoryCounter;
 
 	public static var watermarks = true; // Whether to put Kade Engine liteartly anywhere
 
@@ -91,6 +92,9 @@ class Main extends Sprite
 		fpsCounter = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsCounter);
 		toggleFPS(FlxG.save.data.fps);
+		memoryCounter = new MemoryCounter(10, 3, 0xffffff);
+		addChild(memoryCounter);
+		toggleMem(FlxG.save.data.fps);
 		
 		// fuck you, persistent caching stays ON during sex
 		FlxGraphic.defaultPersist = true;
