@@ -113,6 +113,9 @@ class ChartingState extends MusicBeatState
 
 	override function create()
 	{
+	  Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+
 		curSection = lastSection;
 
 		if (PlayState.SONG != null)
@@ -158,8 +161,10 @@ class ChartingState extends MusicBeatState
 
 		curRenderedNotes = new FlxTypedGroup<Note>();
 		curRenderedSustains = new FlxTypedGroup<FlxSprite>();
-
+    
+    #if !mobileC
 		FlxG.mouse.visible = true;
+		#end
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		tempBpm = _song.bpm;
@@ -877,6 +882,7 @@ class ChartingState extends MusicBeatState
 		FlxG.watch.addQuick('daBeat', curBeat);
 		FlxG.watch.addQuick('daStep', curStep);
 
+    #if !mobileC
 		if (FlxG.mouse.justPressed)
 		{
 			if (FlxG.mouse.overlaps(curRenderedNotes))
@@ -920,6 +926,54 @@ class ChartingState extends MusicBeatState
 			else
 				dummyArrow.y = Math.floor(FlxG.mouse.y / GRID_SIZE) * GRID_SIZE;
 		}
+  	#else
+  	for (touch in FlxG.touches.list){
+    if (FlxG.touch.justReleased)
+		{
+			if (FlxG.touch.overlaps(curRenderedNotes))
+			{
+				curRenderedNotes.forEach(function(note:Note)
+				{
+					if (FlxG.touch.overlaps(note))
+					{
+						if (FlxG.keys.pressed.CONTROL)
+						{
+							selectNote(note);
+						}
+						else
+						{
+							deleteNote(note);
+						}
+					}
+				});
+			}
+			else
+			{
+				if (FlxG.touch.x > gridBG.x
+					&& FlxG.touch.x < gridBG.x + gridBG.width
+					&& FlxG.touch.y > gridBG.y
+					&& FlxG.touch.y < gridBG.y + (GRID_SIZE * _song.notes[curSection].lengthInSteps))
+				{
+					FlxG.log.add('added note');
+					addNote();
+				}
+			}
+		}
+		
+
+		if (FlxG.touch.x > gridBG.x
+			&& FlxG.touch.x < gridBG.x + gridBG.width
+			&& FlxG.touch.y > gridBG.y
+			&& FlxG.touch.y < gridBG.y + (GRID_SIZE * _song.notes[curSection].lengthInSteps))
+		{
+			dummyArrow.x = Math.floor(FlxG.touch.x / GRID_SIZE) * GRID_SIZE;
+			if (FlxG.keys.pressed.SHIFT #if mobileC || key_shift.pressed #end)
+				dummyArrow.y = FlxG.touch.y;
+			else
+				dummyArrow.y = Math.floor(FlxG.touch.y / GRID_SIZE) * GRID_SIZE;
+		}
+}
+    #end
 
 		if (FlxG.keys.justPressed.ENTER #if mobileC || _pad.buttonA.justPressed #end)
 		{
@@ -928,7 +982,9 @@ class ChartingState extends MusicBeatState
 			PlayState.SONG = _song;
 			FlxG.sound.music.stop();
 			vocals.stop();
+			#if !mobileC
 			FlxG.mouse.visible = false;
+			#end
 			LoadingState.loadAndSwitchState(new PlayState());
 		}
 
