@@ -88,13 +88,12 @@ class Main extends Sprite
 		#end
 		game = new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen);
 		addChild(game);
-		
-		fpsCounter = new FPS(10, 3, 0xFFFFFF);
-		addChild(fpsCounter);
-		toggleFPS(FlxG.save.data.fps);
-		memoryCounter = new MemoryCounter(10, 3, 0xffffff);
-		addChild(memoryCounter);
-		toggleMem(FlxG.save.data.fps);
+		//FPS & Memory Usage
+		fpsCounter = new CoolerFPS(10, 3, 0xFFFFFF);
+    addChild(fpsCounter);
+    if(fpsCounter != null) {
+    fpsCounter.visible = FlxG.save.data.fps;
+    }
 		
 		// fuck you, persistent caching stays ON during sex
 		FlxGraphic.defaultPersist = true;
