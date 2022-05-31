@@ -103,7 +103,6 @@ class PlayState extends MusicBeatState
 	var halloweenLevel:Bool = false;
 
 	var songLength:Float = 0;
-	var optionsWatermark:FlxText;
 	var versionWatermark:FlxText;
 	var songWatermark:FlxText;
 
@@ -1071,7 +1070,6 @@ class PlayState extends MusicBeatState
 			songPosBG.cameras = [camHUD];
 			songPosBar.cameras = [camHUD];
 		}
-		optionsWatermark.cameras = [camHUD];
 		versionWatermark.cameras = [camHUD];
 		songWatermark.cameras = [camHUD];
 		if (loadRep)
@@ -1963,7 +1961,6 @@ class PlayState extends MusicBeatState
 			if (luaModchart.getVar("showOnlyStrums",'bool'))
 			{
 				healthBarBG.visible = false;
-				optionsWatermark.visible = false;
 				versionWatermark.visible = false;
 				songWatermark.visible = false;
 				healthBar.visible = false;
@@ -1974,7 +1971,6 @@ class PlayState extends MusicBeatState
 			else
 			{
 				healthBarBG.visible = true;
-				optionsWatermark.visible = true;
 				versionWatermark.visible = true;
 				songWatermark.visible = true;
 				healthBar.visible = true;
