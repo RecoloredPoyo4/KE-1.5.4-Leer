@@ -89,9 +89,12 @@ class Main extends Sprite
 		game = new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen);
 		addChild(game);
 		//FPS & Memory Usage
-		fpsCounter = new CoolerFPS(10, 3, 0xFFFFFF);
-    addChild(fpsCounter);
-    toggleFPS(FlxG.save.data.fps)
+		fpsCounter = new FPS(10, 3, 0xFFFFFF);
+		addChild(fpsCounter);
+		toggleFPS(FlxG.save.data.fps);
+		memoryCounter = new MemoryCounter(10, 3, 0xffffff);
+		addChild(memoryCounter);
+		toggleMem(FlxG.save.data.fps);
 		
 		// fuck you, persistent caching stays ON during sex
 		FlxGraphic.defaultPersist = true;
@@ -105,6 +108,10 @@ class Main extends Sprite
 
 	public function toggleFPS(fpsEnabled:Bool):Void {
 		fpsCounter.visible = fpsEnabled;
+	}
+	
+	public function toggleMem(memEnabled:Bool):Void {
+		memoryCounter.visible = memEnabled;
 	}
 
 	public function changeFPSColor(color:FlxColor)
