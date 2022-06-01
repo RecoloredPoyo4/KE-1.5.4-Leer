@@ -112,15 +112,23 @@ class Note extends FlxSprite
 						{
 							case "burning":
 							{
-								frames = Paths.getSparrowAtlas('NOTE_fire');
-								animation.addByPrefix('blueScroll', 'blue fire');
-								animation.addByPrefix('greenScroll', 'green fire');
-								animation.addByPrefix('redScroll', 'red fire');
-								animation.addByPrefix('purpleScroll', 'purple fire');
-
+								frames = Paths.getSparrowAtlas('HURTNOTE_assets');
+								animation.addByPrefix('greenScroll', 'green0');
+								animation.addByPrefix('redScroll', 'red0');
+								animation.addByPrefix('blueScroll', 'blue0');
+								animation.addByPrefix('purpleScroll', 'purple0');
+ 
+								animation.addByPrefix('purpleholdend', 'pruple end hold');
+								animation.addByPrefix('greenholdend', 'green hold end');
+								animation.addByPrefix('redholdend', 'red hold end');
+								animation.addByPrefix('blueholdend', 'blue hold end');
+ 
+								animation.addByPrefix('purplehold', 'purple hold piece');
+								animation.addByPrefix('greenhold', 'green hold piece');
+								animation.addByPrefix('redhold', 'red hold piece');
+								animation.addByPrefix('bluehold', 'blue hold piece');
 								//if(FlxG.save.data.downscroll)
 									//flipY = true;
-								x -= 50;
 							}
 							default:
 							{
