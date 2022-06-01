@@ -2619,10 +2619,6 @@ class PlayState extends MusicBeatState
 						daNote.alpha = strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].alpha;
 					}
 
-					// direction correction of burn note
-					daNote.x -= (daNote.noteType == "burning" ? 50 : 0);
-					daNote.y -= (daNote.noteType == "burning" ? 65 : 0);
-
 					if (daNote.isSustainNote)
 						daNote.x += daNote.width / 2 + 17;
 
